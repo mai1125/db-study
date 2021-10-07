@@ -34,10 +34,10 @@ export class UserService {
   /**
    * DBに登録した情報を更新
    */
-  async update(fronfdata: User) {
-    const newUser = await this.findOne(fronfdata.id);
-    newUser.name = fronfdata.name;
-    newUser.age = fronfdata.age;
+  async update(frontData: User): Promise<User> {
+    const newUser = await this.findOne(frontData.id);
+    newUser.name = frontData.name;
+    newUser.age = frontData.age;
     return this.userRepository.save(newUser);
   }
 
@@ -45,7 +45,7 @@ export class UserService {
    * DBに登録された情報を１件削除
    */
 
-  async delete(fronfdata: User) {
-    return await this.userRepository.delete(fronfdata);
+  async delete(frontData: User) {
+    return await this.userRepository.delete(frontData);
   }
 }

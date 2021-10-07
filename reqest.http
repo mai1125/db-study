@@ -1,0 +1,49 @@
+POST  http://localhost:3333/api/user/create HTTP/1.1
+content-type: application/json
+
+{
+    "name":"e",
+    "age":"11"
+}
+
+###
+GET    http://localhost:3333/api/user/findone?id=5 HTTP/1.1
+content-type: application/json
+
+###
+GET    http://localhost:3333/api/user/delete?id=2 HTTP/1.1
+content-type: application/json
+
+###
+POST  http://localhost:3333/api/user/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": "6",
+    "name": "あいうえお",
+    "age":"50"
+}
+
+###
+POST  http://localhost:3333/api/board/create HTTP/1.1
+content-type: application/json
+
+{
+    "title":"asyncなし",
+    "text":"なくしてみた"
+}
+
+
+###
+GET    http://localhost:3333/api/board/delete?id=2 HTTP/1.1
+content-type: application/json
+
+###
+POST  http://localhost:3333/api/board/update HTTP/1.1
+content-type: application/json
+
+{
+    "id":"3",
+    "title":"asyncなし",
+    "text":"なくしてみた"
+}

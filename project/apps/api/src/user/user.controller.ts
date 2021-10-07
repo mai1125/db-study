@@ -24,12 +24,12 @@ export class UserController {
   }
 
   @Post('update')
-  update(@Body() fronfdata: User) {
-    return this.userService.update(fronfdata);
+  update(@Body() frontData: User) {
+    return this.userService.update(frontData);
   }
 
   @Get('delete')
-  delete(@Query() fronfdata: User) {
-    return this.userService.delete(fronfdata);
+  delete(@Query() frontData: User) {
+    return this.userService.delete(frontData);
   }
 }
