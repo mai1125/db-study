@@ -1,9 +1,7 @@
 #-------------------------
 # User
 #-------------------------
-
-
-# User : create
+# Create
 POST  http://localhost:3333/api/user/create HTTP/1.1
 content-type: application/json
 
@@ -12,19 +10,15 @@ content-type: application/json
     "age":"11"
 }
 
-###
-# User : read
+### Read
 GET    http://localhost:3333/api/user/read HTTP/1.1
 content-type: application/json
 
-###
-# User : read id指定
+### Read id指定
 GET    http://localhost:3333/api/user/read?id=4 HTTP/1.1
 content-type: application/json
 
-
-###
-# User : update
+### Update
 POST  http://localhost:3333/api/user/update HTTP/1.1
 content-type: application/json
 
@@ -34,8 +28,7 @@ content-type: application/json
     "age":"50"
 }
 
-###
-# User : delete
+### Delete
 GET    http://localhost:3333/api/user/delete?id=3 HTTP/1.1
 content-type: application/json
 
@@ -44,9 +37,7 @@ content-type: application/json
 #-------------------------
 # Board
 #-------------------------
-
-###
-# Board : create
+### Create
 POST  http://localhost:3333/api/board/create HTTP/1.1
 content-type: application/json
 
@@ -55,18 +46,15 @@ content-type: application/json
     "text":"いいいいいいいいいいいいい"
 }
 
-###
-# Board : read
+### Read
 GET    http://localhost:3333/api/board/read HTTP/1.1
 content-type: application/json
 
-###
-# Board : read id指定
+### Read id指定
 GET    http://localhost:3333/api/board/read?id=25 HTTP/1.1
 content-type: application/json
 
-###
-# Board : update
+### Update
 POST  http://localhost:3333/api/board/update HTTP/1.1
 content-type: application/json
 
@@ -76,7 +64,6 @@ content-type: application/json
     "text":"eeeeeeeeeeee"
 }
 
-###
-# Board : delete
+### Delete
 GET    http://localhost:3333/api/board/delete?id=24 HTTP/1.1
 content-type: application/json
