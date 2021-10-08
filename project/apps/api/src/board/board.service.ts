@@ -48,7 +48,7 @@ export class BoardService {
   }
 
   /**
-   * DBから値を1件取得する
+   * DBから値を1件取得す"
    */
   findOne(id: number) {
     return this.boardRepository.findOne(id);
