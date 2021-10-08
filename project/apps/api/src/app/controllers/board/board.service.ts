@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Board } from '../interface/interface';
-import { Boards } from './board.entities';
+import { Board } from '../../interfaces/board.interface';
+import { Boards } from '../../entities/board.entities';
 
 @Injectable()
 export class BoardService {

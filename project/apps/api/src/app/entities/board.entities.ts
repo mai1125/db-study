@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Board } from '../interface/interface';
+import { Board } from '../interfaces/board.interface';
 
 @Entity()
 export class Boards implements Board {

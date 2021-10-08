@@ -1,17 +1,21 @@
 import { Module } from '@nestjs/common';
-
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
-
-// typeORM
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
-// User
-import { Users } from './user/user.entities';
-import { UserModule } from './user/user.module';
-// Board
-import { Boards } from './board/board.entities';
-import { BoardModule } from './board/board.module';
+
+// TypeORMのEntities
+import { Users } from './entities/user.entities';
+import { Boards } from './entities/board.entities';
+const entities = [Users, Boards];
+
+// Controllers
+import { UserController } from './controllers/user/user.controller';
+import { BoardController } from './controllers/board/board.controller';
+const controllers = [UserController, BoardController];
+
+// Services
+import { UserService } from './controllers/user/user.service';
+import { BoardService } from './controllers/board/board.service';
+const services = [UserService, BoardService];
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -21,15 +25,12 @@ import { BoardModule } from './board/board.module';
       username: 'user',
       password: 'user',
       database: 'demo',
-      entities: [Users, Boards],
+      entities: [...entities],
       synchronize: true,
     }),
-    UserModule,
-    BoardModule,
+    TypeOrmModule.forFeature([...entities]),
   ],
-  // controllers: [AppController],
-  // providers: [AppService],
+  controllers: [...controllers],
+  providers: [...services],
 })
-export class AppModule {
-  constructor(private connection: Connection) {}
-}
+export class AppModule {}

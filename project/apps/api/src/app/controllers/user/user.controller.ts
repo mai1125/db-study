@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { User } from '../../interfaces/user.interface';
 import { UserService } from './user.service';
-import { User } from '../interface/interface';
 
-@Controller('User')
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
