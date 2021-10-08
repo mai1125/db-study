@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Users } from '../../entities/user.entities';
@@ -20,14 +20,18 @@ export class UserService {
   /**
    * DBから値を全件取得する
    */
-  read(id?: number): Promise<User> | Promise<User[]> {
-    if (id) {
-      // idの指定があれば該当idの情報を取得
-      return this.findOne(id);
-    } else {
-      // idの指定がなければ全件情報を取得
+  async read(id?: number): Promise<User | User[]> {
+    // IDなければ全部返して関数return
+    if (!id) {
       return this.userRepository.find();
     }
+    // IDあれば該当のデータを返す
+    const result = await this.findOne(id);
+    if (!result) {
+      // なければエラー
+      throw new NotFoundException();
+    }
+    return result;
   }
 
   /**
