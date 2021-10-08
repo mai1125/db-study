@@ -12,22 +12,22 @@ export class BoardController {
   }
 
   @Get('read')
-  read() {
-    return this.boardService.read();
-  }
-
-  @Get('findone')
-  findone(@Query() frontdata: Board) {
-    return this.boardService.findone(frontdata.id);
+  read(@Query('id') id?: number) {
+    return this.boardService.read(id);
   }
 
   @Post('update')
   update(@Body() frontdata: Board) {
-    return this, this.boardService.update(frontdata);
+    return this.boardService.update(frontdata);
   }
 
   @Get('delete')
   delete(@Query() frontdata: Board) {
     return this.boardService.delete(frontdata);
+  }
+
+  @Get('findone')
+  findone(@Query() frontdata: Board) {
+    return this.boardService.findOne(frontdata.id);
   }
 }

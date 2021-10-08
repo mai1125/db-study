@@ -13,22 +13,21 @@ export class UserService {
   /**
    * DBに値を書き込む
    */
-  async create(data: User): Promise<User> {
-    return await this.userRepository.save(data);
+  create(frontdate: User): Promise<User> {
+    return this.userRepository.save(frontdate);
   }
 
   /**
    * DBから値を全件取得する
    */
-  read(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
-  /**
-   * DBから値を1件取得する
-   */
-  findOne(id: number) {
-    return this.userRepository.findOne(id);
+  read(id?: number): Promise<User> | Promise<User[]> {
+    if (id) {
+      // idの指定があれば該当idの情報を取得
+      return this.findOne(id);
+    } else {
+      // idの指定がなければ全件情報を取得
+      return this.userRepository.find();
+    }
   }
 
   /**
@@ -47,5 +46,12 @@ export class UserService {
 
   async delete(frontData: User) {
     return await this.userRepository.delete(frontData);
+  }
+
+  /**
+   * DBから値を1件取得する
+   */
+  findOne(id: number) {
+    return this.userRepository.findOne(id);
   }
 }

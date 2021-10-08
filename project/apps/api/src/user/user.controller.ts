@@ -2,8 +2,6 @@ import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from '../interface/interface';
 
-type UserPK = Pick<User, 'id'>;
-
 @Controller('User')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -14,13 +12,8 @@ export class UserController {
   }
 
   @Get('read')
-  read() {
-    return this.userService.read();
-  }
-
-  @Get('findone')
-  findOne(@Query() frontData: UserPK) {
-    return this.userService.findOne(frontData.id);
+  read(@Query('id') id?: number) {
+    return this.userService.read(id);
   }
 
   @Post('update')
@@ -31,5 +24,10 @@ export class UserController {
   @Get('delete')
   delete(@Query() frontData: User) {
     return this.userService.delete(frontData);
+  }
+
+  @Get('findone')
+  findOne(@Query() frontData: User) {
+    return this.userService.findOne(frontData.id);
   }
 }

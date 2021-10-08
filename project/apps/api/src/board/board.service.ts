@@ -20,21 +20,21 @@ export class BoardService {
   /**
    * DBから値を全件取得する
    */
-  read(): Promise<Board[]> {
-    return this.boardRepository.find();
-  }
-  /**
-   * DBから値を1件取得する
-   */
-  findone(id: number) {
-    return this.boardRepository.findOne(id);
+  read(id?: number): Promise<Board> | Promise<Board[]> {
+    if (id) {
+      // return this.userRepository.find();
+      return this.findOne(id);
+    } else {
+      // ID指定なければ全て取得
+      return this.boardRepository.find();
+    }
   }
 
   /**
    * DBの値を更新する
    */
   async update(frontdata: Board): Promise<Board> {
-    const updateBoard = await this.findone(frontdata.id);
+    const updateBoard = await this.findOne(frontdata.id);
     updateBoard.title = frontdata.title;
     updateBoard.text = frontdata.text;
     return this.boardRepository.save(updateBoard);
@@ -45,5 +45,12 @@ export class BoardService {
    */
   delete(frontdata: Board) {
     return this.boardRepository.delete(frontdata);
+  }
+
+  /**
+   * DBから値を1件取得する
+   */
+  findOne(id: number) {
+    return this.boardRepository.findOne(id);
   }
 }
