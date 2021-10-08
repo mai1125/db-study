@@ -15,7 +15,7 @@ GET    http://localhost:3333/api/user/read HTTP/1.1
 content-type: application/json
 
 ### Read id指定
-GET    http://localhost:3333/api/user/read?id=4 HTTP/1.1
+GET    http://localhost:3333/api/user/read?id=3 HTTP/1.1
 content-type: application/json
 
 ### Update

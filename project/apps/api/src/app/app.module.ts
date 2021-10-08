@@ -7,11 +7,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 // User
-import { Users } from '../user/user.entities';
-import { UserModule } from '../user/user.module';
+import { Users } from './user/user.entities';
+import { UserModule } from './user/user.module';
 // Board
-import { Boards } from '../board/board.entities';
-import { BoardModule } from '../board/board.module';
+import { Boards } from './board/board.entities';
+import { BoardModule } from './board/board.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
