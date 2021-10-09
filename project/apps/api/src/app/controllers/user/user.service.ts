@@ -50,12 +50,12 @@ export class UserService {
   /**
    * DBに登録された情報を１件削除
    */
-  async delete(frontData: User) {
-    const res = await this.findOne(frontData.id);
+  async delete(id: number) {
+    const res = await this.findOne(id);
     if (!res) {
       throw new NotFoundException();
     }
-    return this.userRepository.delete(frontData);
+    return this.userRepository.delete(res);
   }
 
   /**

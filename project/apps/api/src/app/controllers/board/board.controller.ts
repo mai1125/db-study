@@ -22,8 +22,8 @@ export class BoardController {
   }
 
   @Get('delete')
-  delete(@Query() frontdata: Board) {
-    return this.boardService.delete(frontdata);
+  delete(@Query('id') id: number) {
+    return this.boardService.delete(id);
   }
 
   @Get('findone')

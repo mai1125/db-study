@@ -22,8 +22,8 @@ export class UserController {
   }
 
   @Get('delete')
-  delete(@Query() frontData: User) {
-    return this.userService.delete(frontData);
+  delete(@Query('id') id: number) {
+    return this.userService.delete(id);
   }
 
   @Get('findone')

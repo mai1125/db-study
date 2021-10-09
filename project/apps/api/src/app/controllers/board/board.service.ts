@@ -50,12 +50,12 @@ export class BoardService {
   /**
    * DBから値を1件削除する
    */
-  async delete(frontData: Board) {
-    const res = await this.findOne(frontData.id);
+  async delete(id: number) {
+    const res = await this.findOne(id);
     if (!res) {
       throw new NotFoundException();
     }
-    return this.boardRepository.delete(frontData);
+    return this.boardRepository.delete(res);
   }
 
   /**
