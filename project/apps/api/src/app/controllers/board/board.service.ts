@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Board } from '../../interfaces/board.interface';
@@ -14,37 +14,48 @@ export class BoardService {
   /**
    * DBに値を書き込む
    */
-  create(frontdate: Board) {
-    return this.boardRepository.save(frontdate);
+  create(frontDate: Board) {
+    return this.boardRepository.save(frontDate);
   }
   /**
    * DBから値を全件取得する
    */
-  read(id?: number): Promise<Board> | Promise<Board[]> {
-    if (id) {
-      // return this.userRepository.find();
-      return this.findOne(id);
-    } else {
-      // ID指定なければ全て取得
+  async read(id?: number): Promise<Board[] | Board> {
+    // IDの指定がない場合は全件値を返す
+    if (!id) {
       return this.boardRepository.find();
     }
+    // idの指定がある場合該当IDを持つ場合
+    const result = await this.findOne(id);
+    // 該当するIDがなければエラーを返す
+    if (!result) {
+      throw new NotFoundException();
+    }
+    return result;
   }
 
   /**
    * DBの値を更新する
    */
-  async update(frontdata: Board): Promise<Board> {
-    const updateBoard = await this.findOne(frontdata.id);
-    updateBoard.title = frontdata.title;
-    updateBoard.text = frontdata.text;
-    return this.boardRepository.save(updateBoard);
+  async update(frontData: Board): Promise<Board> {
+    const res = await this.findOne(frontData.id);
+    if (!res) {
+      throw new NotFoundException();
+    }
+    res.title = frontData.title;
+    res.text = frontData.text;
+    return this.boardRepository.save(res);
   }
 
   /**
    * DBから値を1件削除する
    */
-  delete(frontdata: Board) {
-    return this.boardRepository.delete(frontdata);
+  async delete(frontData: Board) {
+    const res = await this.findOne(frontData.id);
+    if (!res) {
+      throw new NotFoundException();
+    }
+    return this.boardRepository.delete(frontData);
   }
 
   /**

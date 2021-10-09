@@ -38,18 +38,24 @@ export class UserService {
    * DBに登録した情報を更新
    */
   async update(frontData: User): Promise<User> {
-    const newUser = await this.findOne(frontData.id);
-    newUser.name = frontData.name;
-    newUser.age = frontData.age;
-    return this.userRepository.save(newUser);
+    const res = await this.findOne(frontData.id);
+    if (!res) {
+      throw new NotFoundException();
+    }
+    res.name = frontData.name;
+    res.age = frontData.age;
+    return this.userRepository.save(res);
   }
 
   /**
    * DBに登録された情報を１件削除
    */
-
   async delete(frontData: User) {
-    return await this.userRepository.delete(frontData);
+    const res = await this.findOne(frontData.id);
+    if (!res) {
+      throw new NotFoundException();
+    }
+    return this.userRepository.delete(frontData);
   }
 
   /**

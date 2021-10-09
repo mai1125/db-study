@@ -15,7 +15,7 @@ GET    http://localhost:3333/api/user/read HTTP/1.1
 content-type: application/json
 
 ### Read id指定
-GET    http://localhost:3333/api/user/read?id=3 HTTP/1.1
+GET    http://localhost:3333/api/user/read?id=8 HTTP/1.1
 content-type: application/json
 
 ### Update
@@ -23,13 +23,13 @@ POST  http://localhost:3333/api/user/update HTTP/1.1
 content-type: application/json
 
 {
-    "id": "6",
+    "id": "4",
     "name": "あいうえお",
     "age":"50"
 }
 
 ### Delete
-GET    http://localhost:3333/api/user/delete?id=3 HTTP/1.1
+GET    http://localhost:3333/api/user/delete?id=6 HTTP/1.1
 content-type: application/json
 
 
@@ -42,8 +42,8 @@ POST  http://localhost:3333/api/board/create HTTP/1.1
 content-type: application/json
 
 {
-    "title":"ああああああああ",
-    "text":"いいいいいいいいいいいいい"
+    "title":"こんばんは",
+    "text":"くまー"
 }
 
 ### Read
@@ -51,7 +51,7 @@ GET    http://localhost:3333/api/board/read HTTP/1.1
 content-type: application/json
 
 ### Read id指定
-GET    http://localhost:3333/api/board/read?id=25 HTTP/1.1
+GET    http://localhost:3333/api/board/read?id=21 HTTP/1.1
 content-type: application/json
 
 ### Update
@@ -59,11 +59,11 @@ POST  http://localhost:3333/api/board/update HTTP/1.1
 content-type: application/json
 
 {
-    "id":"14",
+    "id":"15",
     "title":"asdf",
     "text":"eeeeeeeeeeee"
 }
 
 ### Delete
-GET    http://localhost:3333/api/board/delete?id=24 HTTP/1.1
+GET    http://localhost:3333/api/board/delete?id=1 HTTP/1.1
 content-type: application/json
